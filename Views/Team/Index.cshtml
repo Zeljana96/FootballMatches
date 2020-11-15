@@ -1,0 +1,123 @@
+@model Task5.Dtos.Team.AddTeamDto
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<link rel="stylesheet" href="~/css/site.css" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Team List</h2>
+        </div>
+
+
+        <div id="PlaceHolderHere"></div>
+        <button type="button" class="btn btn-warning" data-toggle="ajax-modal" data-target="#createTeamModal" data-url="@Url.Action("Create")">
+            <i class="fas fa-plus"></i> &nbsp; Create New Team
+        </button>
+        <a asp-controller="Team" asp-route-Id="1" asp-action="AlternativeCreate" class="btn btn-primary mx-2">
+                            <i class="fas fa-edit">Create New Team</i>
+                        </a>
+
+    </div>
+</div>
+
+<br /><br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Team Name
+            </th>
+            <th>
+                Number of Players
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.Teams)
+        {
+            <tr>
+                <td width="50%">@obj.Name</td>
+                <td width="30%">@obj.NumberOfPlayers</td>
+                <td class="text-center">
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Team" asp-route-Id="@obj.TeamId" asp-action="Details" class="btn btn-primary mx-2">
+                            <i class="fas fa-edit">Details</i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+</div>
+
+@* This part of code is just a peace of code that I left here, after so many attempts to make it work. I tried few more approaches, that I deleted
+from here and few more files where I had the same problem with .ajax call. I made alternative approach to some backend functionality that couldn't be accessed from 
+frontend.
+
+ <script>
+
+    $(document).ready(function () {
+
+
+        $("#btnSubmit").click(function () {
+
+
+
+            var myformdata = $("#myForm").serialize();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Team/AddTeam",
+                data: myformdata,
+                success: function () {
+                    window.location.href = "/Team/Index";
+
+
+                }
+
+            })
+        })
+
+    })
+
+
+</script>  
+
+
+ <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#example").DataTable({
+                "ajax": {
+                    "type":"GET",
+                    "url": "@Url.Action("GetData","Team")",
+                    "datatype": "JSON"
+                },
+                "columns": [
+                { "data": "TeamId"},
+                { "data": "NumberOfPlayers"}
+                ]
+            });
+        });
+    </script>
+}
+
+</div> *@

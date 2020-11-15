@@ -1,0 +1,9 @@
+<option value=" ">Select Player</option>
+
+@if(ViewBag.PlayerList != null)
+{
+    foreach(var item in ViewBag.PlayerList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

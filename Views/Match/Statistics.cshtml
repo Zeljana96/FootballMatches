@@ -1,0 +1,68 @@
+@model Task5.Models.TeamPlayer
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br /><br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+               Team
+            </th>
+            <th>
+               Number of wins
+            </th>
+            <th>
+               Number of draws
+            </th>
+            <th>
+               Number of loses
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.TeamStatistics)
+        {
+            <tr>
+                <td width="20%">@obj.Split("/")[0]</td>
+                <td width="10%">@obj.Split("/")[1]</td>
+                <td width="10%">@obj.Split("/")[2]</td>
+                <td width="10%">@obj.Split("/")[3]</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br /><br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+               Player
+            </th>
+            <th>
+               Matches
+            </th>
+            <th>
+               Goals
+            </th>
+            <th>
+               Team
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in ViewBag.PlayerStatistics)
+        {
+            <tr>
+                <td width="20%">@obj.Name</td>
+                <td width="10%">@obj.Matches</td>
+                <td width="10%">@obj.Goals</td>
+                <td width="10%">@obj.Team.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
